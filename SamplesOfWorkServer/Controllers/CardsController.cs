@@ -11,17 +11,17 @@ using System.Net.Http;
 
 namespace SamplesOfWorkServer.Controllers
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    //[JsonObject(MemberSerialization.OptIn)]
     public class card
     {
-        [JsonProperty]
+        //[JsonProperty]
         public String id;
-        [JsonProperty]
+        //[JsonProperty]
         public String title;
-        [JsonProperty]
+        //[JsonProperty]
         public String image_url;
         public String internalImage_url;
-        [JsonProperty]
+        //[JsonProperty]
         public String description;
     }
 
@@ -34,7 +34,7 @@ namespace SamplesOfWorkServer.Controllers
     {
         static private Cards cards = null;
 
-        static private void buildChats(UrlHelper Url)
+        static private void buildChats(String rootUri)
         {
             if (cards == null)
             {
@@ -50,7 +50,7 @@ namespace SamplesOfWorkServer.Controllers
                     {
                         if (c.internalImage_url != null)
                         {
-                            c.image_url = Url.Content(c.internalImage_url);
+                            c.image_url = rootUri + c.internalImage_url;
                         }
                     }
                 }
@@ -62,7 +62,7 @@ namespace SamplesOfWorkServer.Controllers
         [SwaggerOperation("GetAll")]
         public Cards Get()
         {
-            buildChats(Url);
+            buildChats(Request.RequestUri.GetLeftPart(UriPartial.Authority));
             return CardsController.cards;
         }
     }
