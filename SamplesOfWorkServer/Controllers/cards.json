@@ -1,0 +1,10 @@
+{
+  "cards": [
+    {
+      "id": "1",
+      "title": "Chat Application",
+      "internalImage_url": "~\\content\\man-field-smartphone-yellow.jpg",
+      "description": "Demonstration of Recycler view, use of Picasso to customize pictures and a Loader to fetch from basic API."
+    }
+  ]
+}
